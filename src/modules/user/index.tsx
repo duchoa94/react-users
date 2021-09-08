@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { searchGithubUsers } from './user.slice';
+import { searchGithubUsers, resetSearchUsers } from './user.slice';
 import './index.scss';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { handleNonOverlappingItems } from '../non-overlap-items/non-overlap-item';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -26,6 +25,7 @@ const UserPage = () => {
 
     if (value && value.length >= 3) {
       setDisplayUsers([]);
+      dispatch(resetSearchUsers());
       dispatch(searchGithubUsers(value));
     }
   }

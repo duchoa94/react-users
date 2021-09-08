@@ -35,5 +35,9 @@ export const searchGithubUsers = (searchText: string) => async (dispatch: any) =
   }
 };
 
+export const resetSearchUsers = () => async (dispatch: any) => {
+  dispatch(searchUsersSuccess(null));
+}
+
 export default userSlice.reducer
 
