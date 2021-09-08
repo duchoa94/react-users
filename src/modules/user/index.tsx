@@ -4,6 +4,7 @@ import { searchGithubUsers } from './user.slice';
 import './index.scss';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { handleNonOverlappingItems } from '../non-overlap-items/non-overlap-item';
 
 const UserPage = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,17 @@ const UserPage = () => {
 
   const [searchValue, setSearchValue] = useState("");
   const [displayUsers, setDisplayUsers] = useState<any[]>([]);
+
+  useEffect(() => {
+    const items = [
+      { startPx: 10, endPx: 30 },
+      { startPx: 55, endPx: 65 },
+      { startPx: 35, endPx: 50 },
+      { startPx: 20, endPx: 40 },
+      { startPx: 60, endPx: 70 },
+    ];
+    handleNonOverlappingItems(items);
+  }, []);
 
   useEffect(() => {
     if (searchResult && searchResult.items) {
